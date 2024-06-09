@@ -1,0 +1,29 @@
+{
+  "pavcoApp": {
+    "billDetail": {
+      "home": {
+        "title": "Bill Details",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Bill Detail",
+        "createOrEditLabel": "Create or edit a Bill Detail",
+        "notFound": "No Bill Details found"
+      },
+      "created": "A new Bill Detail is created with identifier {{ param }}",
+      "updated": "A Bill Detail is updated with identifier {{ param }}",
+      "deleted": "A Bill Detail is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Bill Detail {{ id }}?"
+      },
+      "detail": {
+        "title": "Bill Detail"
+      },
+      "id": "ID",
+      "uuid": "Uuid",
+      "code": "Code",
+      "description": "Description",
+      "price": "Price",
+      "quantity": "Quantity",
+      "bill": "Bill"
+    }
+  }
+}

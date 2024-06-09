@@ -1,0 +1,29 @@
+{
+  "pavcoApp": {
+    "equivalent": {
+      "home": {
+        "title": "Equivalents",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Equivalent",
+        "createOrEditLabel": "Create or edit a Equivalent",
+        "notFound": "No Equivalents found"
+      },
+      "created": "A new Equivalent is created with identifier {{ param }}",
+      "updated": "A Equivalent is updated with identifier {{ param }}",
+      "deleted": "A Equivalent is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Equivalent {{ id }}?"
+      },
+      "detail": {
+        "title": "Equivalent"
+      },
+      "id": "ID",
+      "uuid": "Uuid",
+      "code": "Code",
+      "price": "Price",
+      "discount": "Discount",
+      "product": "Product",
+      "client": "Client"
+    }
+  }
+}

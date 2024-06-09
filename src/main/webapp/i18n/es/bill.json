@@ -1,0 +1,28 @@
+{
+  "pavcoApp": {
+    "bill": {
+      "home": {
+        "title": "Bills",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Bill",
+        "createOrEditLabel": "Crear o editar Bill",
+        "notFound": "Ningún Bills encontrado"
+      },
+      "created": "Un nuevo Bill ha sido creado con el identificador {{ param }}",
+      "updated": "Un Bill ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Bill ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Bill {{ id }}?"
+      },
+      "detail": {
+        "title": "Bill"
+      },
+      "id": "ID",
+      "uuid": "Uuid",
+      "code": "Code",
+      "notes": "Notes",
+      "billDetail": "Bill Detail",
+      "client": "Client"
+    }
+  }
+}

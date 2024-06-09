@@ -1,0 +1,7 @@
+export enum TaxPayerType {
+  TAXPAYER1 = 'TAXPAYER1',
+
+  TAXPAYER2 = 'TAXPAYER2',
+
+  TAXPAYER3 = 'TAXPAYER3',
+}

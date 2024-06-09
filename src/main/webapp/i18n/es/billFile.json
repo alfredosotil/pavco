@@ -1,0 +1,30 @@
+{
+  "pavcoApp": {
+    "billFile": {
+      "home": {
+        "title": "Bill Files",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Bill File",
+        "createOrEditLabel": "Crear o editar Bill File",
+        "notFound": "Ningún Bill Files encontrado"
+      },
+      "created": "Un nuevo Bill File ha sido creado con el identificador {{ param }}",
+      "updated": "Un Bill File ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Bill File ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Bill File {{ id }}?"
+      },
+      "detail": {
+        "title": "Bill File"
+      },
+      "id": "ID",
+      "uuid": "Uuid",
+      "name": "Name",
+      "size": "Size",
+      "mimeType": "Mime Type",
+      "content": "Content",
+      "isProcessed": "Is Processed",
+      "client": "Client"
+    }
+  }
+}

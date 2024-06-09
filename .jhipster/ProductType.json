@@ -1,0 +1,34 @@
+{
+  "annotations": {
+    "changelogDate": "20240529024313"
+  },
+  "applications": ["pavco"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "uuid",
+      "fieldType": "UUID",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique", "maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "discount",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "ProductType",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}
