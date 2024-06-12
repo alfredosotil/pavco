@@ -5,6 +5,7 @@ export interface IBill {
   uuid?: string | null;
   code?: string;
   notes?: string | null;
+  total?: number;
   client?: IClient | null;
 }
 

@@ -5,6 +5,7 @@ export interface IEquivalent {
   id?: number;
   uuid?: string | null;
   code?: string;
+  name?: string;
   price?: number;
   discount?: number;
   product?: IProduct | null;

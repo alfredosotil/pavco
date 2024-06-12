@@ -52,6 +52,9 @@ export const BillUpdate = () => {
     if (values.id !== undefined && typeof values.id !== 'number') {
       values.id = Number(values.id);
     }
+    if (values.total !== undefined && typeof values.total !== 'number') {
+      values.total = Number(values.total);
+    }
 
     const entity = {
       ...billEntity,
@@ -108,7 +111,9 @@ export const BillUpdate = () => {
                 type="text"
                 validate={{
                   required: { value: true, message: translate('entity.validation.required') },
-                  maxLength: { value: 30, message: translate('entity.validation.maxlength', { max: 30 }) },
+                  minLength: { value: 10, message: translate('entity.validation.minlength', { min: 10 }) },
+                  maxLength: { value: 12, message: translate('entity.validation.maxlength', { max: 12 }) },
+                  pattern: { value: /^[0-9]+/, message: translate('entity.validation.pattern', { pattern: '^[0-9]+' }) },
                 }}
               />
               <ValidatedField
@@ -119,6 +124,17 @@ export const BillUpdate = () => {
                 type="text"
                 validate={{
                   maxLength: { value: 255, message: translate('entity.validation.maxlength', { max: 255 }) },
+                }}
+              />
+              <ValidatedField
+                label={translate('pavcoApp.bill.total')}
+                id="bill-total"
+                name="total"
+                data-cy="total"
+                type="text"
+                validate={{
+                  required: { value: true, message: translate('entity.validation.required') },
+                  validate: v => isNumber(v) || translate('entity.validation.number'),
                 }}
               />
               <ValidatedField id="bill-client" name="client" data-cy="client" label={translate('pavcoApp.bill.client')} type="select">

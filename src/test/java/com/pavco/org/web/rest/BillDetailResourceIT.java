@@ -47,8 +47,8 @@ class BillDetailResourceIT {
     private static final UUID DEFAULT_UUID = UUID.randomUUID();
     private static final UUID UPDATED_UUID = UUID.randomUUID();
 
-    private static final String DEFAULT_CODE = "AAAAAAAAAA";
-    private static final String UPDATED_CODE = "BBBBBBBBBB";
+    private static final String DEFAULT_CODE = "7137";
+    private static final String UPDATED_CODE = "00280";
 
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
@@ -414,7 +414,7 @@ class BillDetailResourceIT {
         BillDetail partialUpdatedBillDetail = new BillDetail();
         partialUpdatedBillDetail.setId(billDetail.getId());
 
-        partialUpdatedBillDetail.description(UPDATED_DESCRIPTION).price(UPDATED_PRICE);
+        partialUpdatedBillDetail.uuid(UPDATED_UUID).description(UPDATED_DESCRIPTION);
 
         restBillDetailMockMvc
             .perform(

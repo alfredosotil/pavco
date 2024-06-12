@@ -95,6 +95,10 @@ export const ProductType = () => {
                   <Translate contentKey="pavcoApp.productType.code">Code</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('code')} />
                 </th>
+                <th className="hand" onClick={sort('name')}>
+                  <Translate contentKey="pavcoApp.productType.name">Name</Translate>{' '}
+                  <FontAwesomeIcon icon={getSortIconByFieldName('name')} />
+                </th>
                 <th className="hand" onClick={sort('price')}>
                   <Translate contentKey="pavcoApp.productType.price">Price</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('price')} />
@@ -116,6 +120,7 @@ export const ProductType = () => {
                   </td>
                   <td>{productType.uuid}</td>
                   <td>{productType.code}</td>
+                  <td>{productType.name}</td>
                   <td>{productType.price}</td>
                   <td>{productType.discount}</td>
                   <td className="text-end">

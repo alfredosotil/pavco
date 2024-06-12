@@ -38,6 +38,12 @@ export const ClientDetail = () => {
           </dt>
           <dd>{clientEntity.uuid}</dd>
           <dt>
+            <span id="email">
+              <Translate contentKey="pavcoApp.client.email">Email</Translate>
+            </span>
+          </dt>
+          <dd>{clientEntity.email}</dd>
+          <dt>
             <span id="ruc">
               <Translate contentKey="pavcoApp.client.ruc">Ruc</Translate>
             </span>

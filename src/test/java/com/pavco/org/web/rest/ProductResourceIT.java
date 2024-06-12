@@ -47,8 +47,11 @@ class ProductResourceIT {
     private static final UUID DEFAULT_UUID = UUID.randomUUID();
     private static final UUID UPDATED_UUID = UUID.randomUUID();
 
-    private static final String DEFAULT_CODE = "AAAAAAAAAA";
-    private static final String UPDATED_CODE = "BBBBBBBBBB";
+    private static final String DEFAULT_CODE = "03";
+    private static final String UPDATED_CODE = "17";
+
+    private static final String DEFAULT_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_NAME = "BBBBBBBBBB";
 
     private static final Double DEFAULT_PRICE = 1D;
     private static final Double UPDATED_PRICE = 2D;
@@ -94,7 +97,12 @@ class ProductResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Product createEntity(EntityManager em) {
-        Product product = new Product().uuid(DEFAULT_UUID).code(DEFAULT_CODE).price(DEFAULT_PRICE).discount(DEFAULT_DISCOUNT);
+        Product product = new Product()
+            .uuid(DEFAULT_UUID)
+            .code(DEFAULT_CODE)
+            .name(DEFAULT_NAME)
+            .price(DEFAULT_PRICE)
+            .discount(DEFAULT_DISCOUNT);
         return product;
     }
 
@@ -105,7 +113,12 @@ class ProductResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Product createUpdatedEntity(EntityManager em) {
-        Product product = new Product().uuid(UPDATED_UUID).code(UPDATED_CODE).price(UPDATED_PRICE).discount(UPDATED_DISCOUNT);
+        Product product = new Product()
+            .uuid(UPDATED_UUID)
+            .code(UPDATED_CODE)
+            .name(UPDATED_NAME)
+            .price(UPDATED_PRICE)
+            .discount(UPDATED_DISCOUNT);
         return product;
     }
 
@@ -183,6 +196,23 @@ class ProductResourceIT {
 
     @Test
     @Transactional
+    void checkNameIsRequired() throws Exception {
+        long databaseSizeBeforeTest = getRepositoryCount();
+        // set the field null
+        product.setName(null);
+
+        // Create the Product, which fails.
+        ProductDTO productDTO = productMapper.toDto(product);
+
+        restProductMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(productDTO)))
+            .andExpect(status().isBadRequest());
+
+        assertSameRepositoryCount(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void checkPriceIsRequired() throws Exception {
         long databaseSizeBeforeTest = getRepositoryCount();
         // set the field null
@@ -229,6 +259,7 @@ class ProductResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(product.getId().intValue())))
             .andExpect(jsonPath("$.[*].uuid").value(hasItem(DEFAULT_UUID.toString())))
             .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE)))
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
             .andExpect(jsonPath("$.[*].discount").value(hasItem(DEFAULT_DISCOUNT.doubleValue())));
     }
@@ -264,6 +295,7 @@ class ProductResourceIT {
             .andExpect(jsonPath("$.id").value(product.getId().intValue()))
             .andExpect(jsonPath("$.uuid").value(DEFAULT_UUID.toString()))
             .andExpect(jsonPath("$.code").value(DEFAULT_CODE))
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
             .andExpect(jsonPath("$.discount").value(DEFAULT_DISCOUNT.doubleValue()));
     }
@@ -287,7 +319,7 @@ class ProductResourceIT {
         Product updatedProduct = productRepository.findById(product.getId()).orElseThrow();
         // Disconnect from session so that the updates on updatedProduct are not directly saved in db
         em.detach(updatedProduct);
-        updatedProduct.uuid(UPDATED_UUID).code(UPDATED_CODE).price(UPDATED_PRICE).discount(UPDATED_DISCOUNT);
+        updatedProduct.uuid(UPDATED_UUID).code(UPDATED_CODE).name(UPDATED_NAME).price(UPDATED_PRICE).discount(UPDATED_DISCOUNT);
         ProductDTO productDTO = productMapper.toDto(updatedProduct);
 
         restProductMockMvc
@@ -373,7 +405,7 @@ class ProductResourceIT {
         Product partialUpdatedProduct = new Product();
         partialUpdatedProduct.setId(product.getId());
 
-        partialUpdatedProduct.uuid(UPDATED_UUID).code(UPDATED_CODE).price(UPDATED_PRICE).discount(UPDATED_DISCOUNT);
+        partialUpdatedProduct.code(UPDATED_CODE).name(UPDATED_NAME).price(UPDATED_PRICE).discount(UPDATED_DISCOUNT);
 
         restProductMockMvc
             .perform(
@@ -401,7 +433,7 @@ class ProductResourceIT {
         Product partialUpdatedProduct = new Product();
         partialUpdatedProduct.setId(product.getId());
 
-        partialUpdatedProduct.uuid(UPDATED_UUID).code(UPDATED_CODE).price(UPDATED_PRICE).discount(UPDATED_DISCOUNT);
+        partialUpdatedProduct.uuid(UPDATED_UUID).code(UPDATED_CODE).name(UPDATED_NAME).price(UPDATED_PRICE).discount(UPDATED_DISCOUNT);
 
         restProductMockMvc
             .perform(

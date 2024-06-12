@@ -16,11 +16,15 @@ public class BillDTO implements Serializable {
     private UUID uuid;
 
     @NotNull
-    @Size(max = 30)
+    @Size(min = 10, max = 12)
+    @Pattern(regexp = "^[0-9]+")
     private String code;
 
     @Size(max = 255)
     private String notes;
+
+    @NotNull
+    private Double total;
 
     private ClientDTO client;
 
@@ -54,6 +58,14 @@ public class BillDTO implements Serializable {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
     public ClientDTO getClient() {
@@ -93,6 +105,7 @@ public class BillDTO implements Serializable {
             ", uuid='" + getUuid() + "'" +
             ", code='" + getCode() + "'" +
             ", notes='" + getNotes() + "'" +
+            ", total=" + getTotal() +
             ", client=" + getClient() +
             "}";
     }

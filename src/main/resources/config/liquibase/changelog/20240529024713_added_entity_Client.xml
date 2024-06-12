@@ -17,13 +17,16 @@
             <column name="uuid" type="${uuidType}">
                 <constraints nullable="true" unique="true" uniqueConstraintName="ux_client__uuid" />
             </column>
-            <column name="ruc" type="varchar(30)">
+            <column name="email" type="varchar(256)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_client__email" />
+            </column>
+            <column name="ruc" type="varchar(12)">
                 <constraints nullable="false" unique="true" uniqueConstraintName="ux_client__ruc" />
             </column>
-            <column name="business_name" type="varchar(100)">
+            <column name="business_name" type="varchar(64)">
                 <constraints nullable="false" />
             </column>
-            <column name="description" type="varchar(255)">
+            <column name="description" type="varchar(512)">
                 <constraints nullable="true" />
             </column>
             <column name="tax_payer_type" type="varchar(255)">
@@ -57,6 +60,7 @@
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
             <column name="uuid" type="${uuidType}"/>
+            <column name="email" type="string"/>
             <column name="ruc" type="string"/>
             <column name="business_name" type="string"/>
             <column name="description" type="string"/>

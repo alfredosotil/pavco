@@ -27,17 +27,24 @@ public class Client implements Serializable {
     private UUID uuid;
 
     @NotNull
-    @Size(max = 30)
-    @Column(name = "ruc", length = 30, nullable = false, unique = true)
+    @Size(max = 256)
+    @Pattern(regexp = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")
+    @Column(name = "email", length = 256, nullable = false, unique = true)
+    private String email;
+
+    @NotNull
+    @Size(min = 10, max = 12)
+    @Pattern(regexp = "^[0-9]+")
+    @Column(name = "ruc", length = 12, nullable = false, unique = true)
     private String ruc;
 
     @NotNull
-    @Size(max = 100)
-    @Column(name = "business_name", length = 100, nullable = false)
+    @Size(max = 64)
+    @Column(name = "business_name", length = 64, nullable = false)
     private String businessName;
 
-    @Size(max = 255)
-    @Column(name = "description", length = 255)
+    @Size(max = 512)
+    @Column(name = "description", length = 512)
     private String description;
 
     @NotNull
@@ -91,6 +98,19 @@ public class Client implements Serializable {
 
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public Client email(String email) {
+        this.setEmail(email);
+        return this;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getRuc() {
@@ -259,6 +279,7 @@ public class Client implements Serializable {
         return "Client{" +
             "id=" + getId() +
             ", uuid='" + getUuid() + "'" +
+            ", email='" + getEmail() + "'" +
             ", ruc='" + getRuc() + "'" +
             ", businessName='" + getBusinessName() + "'" +
             ", description='" + getDescription() + "'" +

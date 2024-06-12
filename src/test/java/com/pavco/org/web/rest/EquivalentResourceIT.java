@@ -47,8 +47,11 @@ class EquivalentResourceIT {
     private static final UUID DEFAULT_UUID = UUID.randomUUID();
     private static final UUID UPDATED_UUID = UUID.randomUUID();
 
-    private static final String DEFAULT_CODE = "AAAAAAAAAA";
-    private static final String UPDATED_CODE = "BBBBBBBBBB";
+    private static final String DEFAULT_CODE = "98";
+    private static final String UPDATED_CODE = "4";
+
+    private static final String DEFAULT_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_NAME = "BBBBBBBBBB";
 
     private static final Double DEFAULT_PRICE = 1D;
     private static final Double UPDATED_PRICE = 2D;
@@ -94,7 +97,12 @@ class EquivalentResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Equivalent createEntity(EntityManager em) {
-        Equivalent equivalent = new Equivalent().uuid(DEFAULT_UUID).code(DEFAULT_CODE).price(DEFAULT_PRICE).discount(DEFAULT_DISCOUNT);
+        Equivalent equivalent = new Equivalent()
+            .uuid(DEFAULT_UUID)
+            .code(DEFAULT_CODE)
+            .name(DEFAULT_NAME)
+            .price(DEFAULT_PRICE)
+            .discount(DEFAULT_DISCOUNT);
         return equivalent;
     }
 
@@ -105,7 +113,12 @@ class EquivalentResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Equivalent createUpdatedEntity(EntityManager em) {
-        Equivalent equivalent = new Equivalent().uuid(UPDATED_UUID).code(UPDATED_CODE).price(UPDATED_PRICE).discount(UPDATED_DISCOUNT);
+        Equivalent equivalent = new Equivalent()
+            .uuid(UPDATED_UUID)
+            .code(UPDATED_CODE)
+            .name(UPDATED_NAME)
+            .price(UPDATED_PRICE)
+            .discount(UPDATED_DISCOUNT);
         return equivalent;
     }
 
@@ -183,6 +196,23 @@ class EquivalentResourceIT {
 
     @Test
     @Transactional
+    void checkNameIsRequired() throws Exception {
+        long databaseSizeBeforeTest = getRepositoryCount();
+        // set the field null
+        equivalent.setName(null);
+
+        // Create the Equivalent, which fails.
+        EquivalentDTO equivalentDTO = equivalentMapper.toDto(equivalent);
+
+        restEquivalentMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(equivalentDTO)))
+            .andExpect(status().isBadRequest());
+
+        assertSameRepositoryCount(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void checkPriceIsRequired() throws Exception {
         long databaseSizeBeforeTest = getRepositoryCount();
         // set the field null
@@ -229,6 +259,7 @@ class EquivalentResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(equivalent.getId().intValue())))
             .andExpect(jsonPath("$.[*].uuid").value(hasItem(DEFAULT_UUID.toString())))
             .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE)))
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
             .andExpect(jsonPath("$.[*].discount").value(hasItem(DEFAULT_DISCOUNT.doubleValue())));
     }
@@ -264,6 +295,7 @@ class EquivalentResourceIT {
             .andExpect(jsonPath("$.id").value(equivalent.getId().intValue()))
             .andExpect(jsonPath("$.uuid").value(DEFAULT_UUID.toString()))
             .andExpect(jsonPath("$.code").value(DEFAULT_CODE))
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
             .andExpect(jsonPath("$.discount").value(DEFAULT_DISCOUNT.doubleValue()));
     }
@@ -287,7 +319,7 @@ class EquivalentResourceIT {
         Equivalent updatedEquivalent = equivalentRepository.findById(equivalent.getId()).orElseThrow();
         // Disconnect from session so that the updates on updatedEquivalent are not directly saved in db
         em.detach(updatedEquivalent);
-        updatedEquivalent.uuid(UPDATED_UUID).code(UPDATED_CODE).price(UPDATED_PRICE).discount(UPDATED_DISCOUNT);
+        updatedEquivalent.uuid(UPDATED_UUID).code(UPDATED_CODE).name(UPDATED_NAME).price(UPDATED_PRICE).discount(UPDATED_DISCOUNT);
         EquivalentDTO equivalentDTO = equivalentMapper.toDto(updatedEquivalent);
 
         restEquivalentMockMvc
@@ -377,7 +409,7 @@ class EquivalentResourceIT {
         Equivalent partialUpdatedEquivalent = new Equivalent();
         partialUpdatedEquivalent.setId(equivalent.getId());
 
-        partialUpdatedEquivalent.uuid(UPDATED_UUID).discount(UPDATED_DISCOUNT);
+        partialUpdatedEquivalent.uuid(UPDATED_UUID).code(UPDATED_CODE);
 
         restEquivalentMockMvc
             .perform(
@@ -408,7 +440,7 @@ class EquivalentResourceIT {
         Equivalent partialUpdatedEquivalent = new Equivalent();
         partialUpdatedEquivalent.setId(equivalent.getId());
 
-        partialUpdatedEquivalent.uuid(UPDATED_UUID).code(UPDATED_CODE).price(UPDATED_PRICE).discount(UPDATED_DISCOUNT);
+        partialUpdatedEquivalent.uuid(UPDATED_UUID).code(UPDATED_CODE).name(UPDATED_NAME).price(UPDATED_PRICE).discount(UPDATED_DISCOUNT);
 
         restEquivalentMockMvc
             .perform(

@@ -67,7 +67,13 @@ public class ProductTypeGatlingTest extends Simulation {
                         .headers(headers_http_authenticated)
                         .body(
                             StringBody(
-                                "{" + "\"uuid\": null" + ", \"code\": \"SAMPLE_TEXT\"" + ", \"price\": 0" + ", \"discount\": 0" + "}"
+                                "{" +
+                                "\"uuid\": null" +
+                                ", \"code\": \"SAMPLE_TEXT\"" +
+                                ", \"name\": \"SAMPLE_TEXT\"" +
+                                ", \"price\": 0" +
+                                ", \"discount\": 0" +
+                                "}"
                             )
                         )
                         .asJson()

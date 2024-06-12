@@ -95,6 +95,10 @@ export const Equivalent = () => {
                   <Translate contentKey="pavcoApp.equivalent.code">Code</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('code')} />
                 </th>
+                <th className="hand" onClick={sort('name')}>
+                  <Translate contentKey="pavcoApp.equivalent.name">Name</Translate>{' '}
+                  <FontAwesomeIcon icon={getSortIconByFieldName('name')} />
+                </th>
                 <th className="hand" onClick={sort('price')}>
                   <Translate contentKey="pavcoApp.equivalent.price">Price</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('price')} />
@@ -122,6 +126,7 @@ export const Equivalent = () => {
                   </td>
                   <td>{equivalent.uuid}</td>
                   <td>{equivalent.code}</td>
+                  <td>{equivalent.name}</td>
                   <td>{equivalent.price}</td>
                   <td>{equivalent.discount}</td>
                   <td>{equivalent.product ? <Link to={`/product/${equivalent.product.id}`}>{equivalent.product.code}</Link> : ''}</td>

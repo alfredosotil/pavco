@@ -16,8 +16,13 @@ public class EquivalentDTO implements Serializable {
     private UUID uuid;
 
     @NotNull
-    @Size(max = 30)
+    @Size(min = 10, max = 12)
+    @Pattern(regexp = "^[0-9]+")
     private String code;
+
+    @NotNull
+    @Size(min = 4, max = 64)
+    private String name;
 
     @NotNull
     private Double price;
@@ -51,6 +56,14 @@ public class EquivalentDTO implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Double getPrice() {
@@ -113,6 +126,7 @@ public class EquivalentDTO implements Serializable {
             "id=" + getId() +
             ", uuid='" + getUuid() + "'" +
             ", code='" + getCode() + "'" +
+            ", name='" + getName() + "'" +
             ", price=" + getPrice() +
             ", discount=" + getDiscount() +
             ", product=" + getProduct() +

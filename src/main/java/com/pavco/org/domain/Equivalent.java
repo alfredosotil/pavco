@@ -26,9 +26,15 @@ public class Equivalent implements Serializable {
     private UUID uuid;
 
     @NotNull
-    @Size(max = 30)
-    @Column(name = "code", length = 30, nullable = false, unique = true)
+    @Size(min = 10, max = 12)
+    @Pattern(regexp = "^[0-9]+")
+    @Column(name = "code", length = 12, nullable = false, unique = true)
     private String code;
+
+    @NotNull
+    @Size(min = 4, max = 64)
+    @Column(name = "name", length = 64, nullable = false)
+    private String name;
 
     @NotNull
     @Column(name = "price", nullable = false)
@@ -87,6 +93,19 @@ public class Equivalent implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public Equivalent name(String name) {
+        this.setName(name);
+        return this;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Double getPrice() {
@@ -167,6 +186,7 @@ public class Equivalent implements Serializable {
             "id=" + getId() +
             ", uuid='" + getUuid() + "'" +
             ", code='" + getCode() + "'" +
+            ", name='" + getName() + "'" +
             ", price=" + getPrice() +
             ", discount=" + getDiscount() +
             "}";

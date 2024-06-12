@@ -49,7 +49,8 @@ public class BillAsserts {
             .as("Verify Bill relevant properties")
             .satisfies(e -> assertThat(e.getUuid()).as("check uuid").isEqualTo(actual.getUuid()))
             .satisfies(e -> assertThat(e.getCode()).as("check code").isEqualTo(actual.getCode()))
-            .satisfies(e -> assertThat(e.getNotes()).as("check notes").isEqualTo(actual.getNotes()));
+            .satisfies(e -> assertThat(e.getNotes()).as("check notes").isEqualTo(actual.getNotes()))
+            .satisfies(e -> assertThat(e.getTotal()).as("check total").isEqualTo(actual.getTotal()));
     }
 
     /**

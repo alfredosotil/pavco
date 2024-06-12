@@ -4,6 +4,7 @@ export interface IProduct {
   id?: number;
   uuid?: string | null;
   code?: string;
+  name?: string;
   price?: number;
   discount?: number;
   productType?: IProductType | null;

@@ -49,6 +49,7 @@ public class ProductTypeAsserts {
             .as("Verify ProductType relevant properties")
             .satisfies(e -> assertThat(e.getUuid()).as("check uuid").isEqualTo(actual.getUuid()))
             .satisfies(e -> assertThat(e.getCode()).as("check code").isEqualTo(actual.getCode()))
+            .satisfies(e -> assertThat(e.getName()).as("check name").isEqualTo(actual.getName()))
             .satisfies(e -> assertThat(e.getPrice()).as("check price").isEqualTo(actual.getPrice()))
             .satisfies(e -> assertThat(e.getDiscount()).as("check discount").isEqualTo(actual.getDiscount()));
     }

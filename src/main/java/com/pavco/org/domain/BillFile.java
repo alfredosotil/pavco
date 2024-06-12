@@ -26,8 +26,8 @@ public class BillFile implements Serializable {
     private UUID uuid;
 
     @NotNull
-    @Size(max = 100)
-    @Column(name = "name", length = 100, nullable = false)
+    @Size(max = 128)
+    @Column(name = "name", length = 128, nullable = false)
     private String name;
 
     @NotNull
@@ -35,6 +35,7 @@ public class BillFile implements Serializable {
     private Long size;
 
     @NotNull
+    @Pattern(regexp = "^[\\w]+\\/[\\w]+$")
     @Column(name = "mime_type", nullable = false)
     private String mimeType;
 

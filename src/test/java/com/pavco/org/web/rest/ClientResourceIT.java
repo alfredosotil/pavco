@@ -51,8 +51,11 @@ class ClientResourceIT {
     private static final UUID DEFAULT_UUID = UUID.randomUUID();
     private static final UUID UPDATED_UUID = UUID.randomUUID();
 
-    private static final String DEFAULT_RUC = "AAAAAAAAAA";
-    private static final String UPDATED_RUC = "BBBBBBBBBB";
+    private static final String DEFAULT_EMAIL = "YL8-2K@\\G^,.HH";
+    private static final String UPDATED_EMAIL = "PL>{|@&_z,FT.\"(6b&";
+
+    private static final String DEFAULT_RUC = "1";
+    private static final String UPDATED_RUC = "32";
 
     private static final String DEFAULT_BUSINESS_NAME = "AAAAAAAAAA";
     private static final String UPDATED_BUSINESS_NAME = "BBBBBBBBBB";
@@ -111,6 +114,7 @@ class ClientResourceIT {
     public static Client createEntity(EntityManager em) {
         Client client = new Client()
             .uuid(DEFAULT_UUID)
+            .email(DEFAULT_EMAIL)
             .ruc(DEFAULT_RUC)
             .businessName(DEFAULT_BUSINESS_NAME)
             .description(DEFAULT_DESCRIPTION)
@@ -134,6 +138,7 @@ class ClientResourceIT {
     public static Client createUpdatedEntity(EntityManager em) {
         Client client = new Client()
             .uuid(UPDATED_UUID)
+            .email(UPDATED_EMAIL)
             .ruc(UPDATED_RUC)
             .businessName(UPDATED_BUSINESS_NAME)
             .description(UPDATED_DESCRIPTION)
@@ -248,6 +253,23 @@ class ClientResourceIT {
 
     @Test
     @Transactional
+    void checkEmailIsRequired() throws Exception {
+        long databaseSizeBeforeTest = getRepositoryCount();
+        // set the field null
+        client.setEmail(null);
+
+        // Create the Client, which fails.
+        ClientDTO clientDTO = clientMapper.toDto(client);
+
+        restClientMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(clientDTO)))
+            .andExpect(status().isBadRequest());
+
+        assertSameRepositoryCount(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void checkRucIsRequired() throws Exception {
         long databaseSizeBeforeTest = getRepositoryCount();
         // set the field null
@@ -310,6 +332,7 @@ class ClientResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(client.getId().intValue())))
             .andExpect(jsonPath("$.[*].uuid").value(hasItem(DEFAULT_UUID.toString())))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
             .andExpect(jsonPath("$.[*].ruc").value(hasItem(DEFAULT_RUC)))
             .andExpect(jsonPath("$.[*].businessName").value(hasItem(DEFAULT_BUSINESS_NAME)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
@@ -348,6 +371,7 @@ class ClientResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(client.getId().intValue()))
             .andExpect(jsonPath("$.uuid").value(DEFAULT_UUID.toString()))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
             .andExpect(jsonPath("$.ruc").value(DEFAULT_RUC))
             .andExpect(jsonPath("$.businessName").value(DEFAULT_BUSINESS_NAME))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION))
@@ -377,6 +401,7 @@ class ClientResourceIT {
         em.detach(updatedClient);
         updatedClient
             .uuid(UPDATED_UUID)
+            .email(UPDATED_EMAIL)
             .ruc(UPDATED_RUC)
             .businessName(UPDATED_BUSINESS_NAME)
             .description(UPDATED_DESCRIPTION)
@@ -468,12 +493,7 @@ class ClientResourceIT {
         Client partialUpdatedClient = new Client();
         partialUpdatedClient.setId(client.getId());
 
-        partialUpdatedClient
-            .businessName(UPDATED_BUSINESS_NAME)
-            .description(UPDATED_DESCRIPTION)
-            .taxPayerType(UPDATED_TAX_PAYER_TYPE)
-            .logo(UPDATED_LOGO)
-            .logoContentType(UPDATED_LOGO_CONTENT_TYPE);
+        partialUpdatedClient.email(UPDATED_EMAIL).ruc(UPDATED_RUC).businessName(UPDATED_BUSINESS_NAME).taxPayerType(UPDATED_TAX_PAYER_TYPE);
 
         restClientMockMvc
             .perform(
@@ -503,6 +523,7 @@ class ClientResourceIT {
 
         partialUpdatedClient
             .uuid(UPDATED_UUID)
+            .email(UPDATED_EMAIL)
             .ruc(UPDATED_RUC)
             .businessName(UPDATED_BUSINESS_NAME)
             .description(UPDATED_DESCRIPTION)

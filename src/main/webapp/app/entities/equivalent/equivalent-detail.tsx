@@ -44,6 +44,12 @@ export const EquivalentDetail = () => {
           </dt>
           <dd>{equivalentEntity.code}</dd>
           <dt>
+            <span id="name">
+              <Translate contentKey="pavcoApp.equivalent.name">Name</Translate>
+            </span>
+          </dt>
+          <dd>{equivalentEntity.name}</dd>
+          <dt>
             <span id="price">
               <Translate contentKey="pavcoApp.equivalent.price">Price</Translate>
             </span>

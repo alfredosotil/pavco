@@ -47,11 +47,14 @@ class BillResourceIT {
     private static final UUID DEFAULT_UUID = UUID.randomUUID();
     private static final UUID UPDATED_UUID = UUID.randomUUID();
 
-    private static final String DEFAULT_CODE = "AAAAAAAAAA";
-    private static final String UPDATED_CODE = "BBBBBBBBBB";
+    private static final String DEFAULT_CODE = "046";
+    private static final String UPDATED_CODE = "62";
 
     private static final String DEFAULT_NOTES = "AAAAAAAAAA";
     private static final String UPDATED_NOTES = "BBBBBBBBBB";
+
+    private static final Double DEFAULT_TOTAL = 1D;
+    private static final Double UPDATED_TOTAL = 2D;
 
     private static final String ENTITY_API_URL = "/api/bills";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -91,7 +94,7 @@ class BillResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Bill createEntity(EntityManager em) {
-        Bill bill = new Bill().uuid(DEFAULT_UUID).code(DEFAULT_CODE).notes(DEFAULT_NOTES);
+        Bill bill = new Bill().uuid(DEFAULT_UUID).code(DEFAULT_CODE).notes(DEFAULT_NOTES).total(DEFAULT_TOTAL);
         return bill;
     }
 
@@ -102,7 +105,7 @@ class BillResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Bill createUpdatedEntity(EntityManager em) {
-        Bill bill = new Bill().uuid(UPDATED_UUID).code(UPDATED_CODE).notes(UPDATED_NOTES);
+        Bill bill = new Bill().uuid(UPDATED_UUID).code(UPDATED_CODE).notes(UPDATED_NOTES).total(UPDATED_TOTAL);
         return bill;
     }
 
@@ -180,6 +183,23 @@ class BillResourceIT {
 
     @Test
     @Transactional
+    void checkTotalIsRequired() throws Exception {
+        long databaseSizeBeforeTest = getRepositoryCount();
+        // set the field null
+        bill.setTotal(null);
+
+        // Create the Bill, which fails.
+        BillDTO billDTO = billMapper.toDto(bill);
+
+        restBillMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(billDTO)))
+            .andExpect(status().isBadRequest());
+
+        assertSameRepositoryCount(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     void getAllBills() throws Exception {
         // Initialize the database
         insertedBill = billRepository.saveAndFlush(bill);
@@ -192,7 +212,8 @@ class BillResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(bill.getId().intValue())))
             .andExpect(jsonPath("$.[*].uuid").value(hasItem(DEFAULT_UUID.toString())))
             .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE)))
-            .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES)));
+            .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES)))
+            .andExpect(jsonPath("$.[*].total").value(hasItem(DEFAULT_TOTAL.doubleValue())));
     }
 
     @SuppressWarnings({ "unchecked" })
@@ -226,7 +247,8 @@ class BillResourceIT {
             .andExpect(jsonPath("$.id").value(bill.getId().intValue()))
             .andExpect(jsonPath("$.uuid").value(DEFAULT_UUID.toString()))
             .andExpect(jsonPath("$.code").value(DEFAULT_CODE))
-            .andExpect(jsonPath("$.notes").value(DEFAULT_NOTES));
+            .andExpect(jsonPath("$.notes").value(DEFAULT_NOTES))
+            .andExpect(jsonPath("$.total").value(DEFAULT_TOTAL.doubleValue()));
     }
 
     @Test
@@ -248,7 +270,7 @@ class BillResourceIT {
         Bill updatedBill = billRepository.findById(bill.getId()).orElseThrow();
         // Disconnect from session so that the updates on updatedBill are not directly saved in db
         em.detach(updatedBill);
-        updatedBill.uuid(UPDATED_UUID).code(UPDATED_CODE).notes(UPDATED_NOTES);
+        updatedBill.uuid(UPDATED_UUID).code(UPDATED_CODE).notes(UPDATED_NOTES).total(UPDATED_TOTAL);
         BillDTO billDTO = billMapper.toDto(updatedBill);
 
         restBillMockMvc
@@ -330,7 +352,7 @@ class BillResourceIT {
         Bill partialUpdatedBill = new Bill();
         partialUpdatedBill.setId(bill.getId());
 
-        partialUpdatedBill.uuid(UPDATED_UUID).code(UPDATED_CODE).notes(UPDATED_NOTES);
+        partialUpdatedBill.notes(UPDATED_NOTES).total(UPDATED_TOTAL);
 
         restBillMockMvc
             .perform(
@@ -358,7 +380,7 @@ class BillResourceIT {
         Bill partialUpdatedBill = new Bill();
         partialUpdatedBill.setId(bill.getId());
 
-        partialUpdatedBill.uuid(UPDATED_UUID).code(UPDATED_CODE).notes(UPDATED_NOTES);
+        partialUpdatedBill.uuid(UPDATED_UUID).code(UPDATED_CODE).notes(UPDATED_NOTES).total(UPDATED_TOTAL);
 
         restBillMockMvc
             .perform(

@@ -20,6 +20,7 @@
       "id": "ID",
       "uuid": "Uuid",
       "code": "Code",
+      "name": "Name",
       "price": "Price",
       "discount": "Discount",
       "productType": "Product Type",

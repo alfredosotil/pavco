@@ -96,6 +96,9 @@ export const Bill = () => {
                 <th className="hand" onClick={sort('notes')}>
                   <Translate contentKey="pavcoApp.bill.notes">Notes</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('notes')} />
                 </th>
+                <th className="hand" onClick={sort('total')}>
+                  <Translate contentKey="pavcoApp.bill.total">Total</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('total')} />
+                </th>
                 <th>
                   <Translate contentKey="pavcoApp.bill.client">Client</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
@@ -113,6 +116,7 @@ export const Bill = () => {
                   <td>{bill.uuid}</td>
                   <td>{bill.code}</td>
                   <td>{bill.notes}</td>
+                  <td>{bill.total}</td>
                   <td>{bill.client ? <Link to={`/client/${bill.client.id}`}>{bill.client.ruc}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">

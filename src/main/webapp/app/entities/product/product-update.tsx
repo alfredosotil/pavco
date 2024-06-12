@@ -121,7 +121,21 @@ export const ProductUpdate = () => {
                 type="text"
                 validate={{
                   required: { value: true, message: translate('entity.validation.required') },
-                  maxLength: { value: 30, message: translate('entity.validation.maxlength', { max: 30 }) },
+                  minLength: { value: 10, message: translate('entity.validation.minlength', { min: 10 }) },
+                  maxLength: { value: 12, message: translate('entity.validation.maxlength', { max: 12 }) },
+                  pattern: { value: /^[0-9]+/, message: translate('entity.validation.pattern', { pattern: '^[0-9]+' }) },
+                }}
+              />
+              <ValidatedField
+                label={translate('pavcoApp.product.name')}
+                id="product-name"
+                name="name"
+                data-cy="name"
+                type="text"
+                validate={{
+                  required: { value: true, message: translate('entity.validation.required') },
+                  minLength: { value: 4, message: translate('entity.validation.minlength', { min: 4 }) },
+                  maxLength: { value: 64, message: translate('entity.validation.maxlength', { max: 64 }) },
                 }}
               />
               <ValidatedField

@@ -26,13 +26,14 @@ public class BillDetail implements Serializable {
     private UUID uuid;
 
     @NotNull
-    @Size(max = 30)
-    @Column(name = "code", length = 30, nullable = false, unique = true)
+    @Size(min = 10, max = 12)
+    @Pattern(regexp = "^[0-9]+")
+    @Column(name = "code", length = 12, nullable = false, unique = true)
     private String code;
 
     @NotNull
-    @Size(max = 255)
-    @Column(name = "description", length = 255, nullable = false)
+    @Size(max = 512)
+    @Column(name = "description", length = 512, nullable = false)
     private String description;
 
     @NotNull
