@@ -54,8 +54,8 @@ class ClientResourceIT {
     private static final String DEFAULT_EMAIL = "YL8-2K@\\G^,.HH";
     private static final String UPDATED_EMAIL = "PL>{|@&_z,FT.\"(6b&";
 
-    private static final String DEFAULT_RUC = "1";
-    private static final String UPDATED_RUC = "32";
+    private static final String DEFAULT_RUC = "1234567890";
+    private static final String UPDATED_RUC = "123456789012";
 
     private static final String DEFAULT_BUSINESS_NAME = "AAAAAAAAAA";
     private static final String UPDATED_BUSINESS_NAME = "BBBBBBBBBB";
