@@ -47,8 +47,8 @@ class EquivalentResourceIT {
     private static final UUID DEFAULT_UUID = UUID.randomUUID();
     private static final UUID UPDATED_UUID = UUID.randomUUID();
 
-    private static final String DEFAULT_CODE = "98";
-    private static final String UPDATED_CODE = "4";
+    private static final String DEFAULT_CODE = "1234567890";
+    private static final String UPDATED_CODE = "123456789012";
 
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
