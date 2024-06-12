@@ -111,6 +111,21 @@ export const ClientUpdate = () => {
                 validate={{}}
               />
               <ValidatedField
+                label={translate('pavcoApp.client.email')}
+                id="client-email"
+                name="email"
+                data-cy="email"
+                type="text"
+                validate={{
+                  required: { value: true, message: translate('entity.validation.required') },
+                  maxLength: { value: 256, message: translate('entity.validation.maxlength', { max: 256 }) },
+                  pattern: {
+                    value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+                    message: translate('entity.validation.pattern', { pattern: '^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$' }),
+                  },
+                }}
+              />
+              <ValidatedField
                 label={translate('pavcoApp.client.ruc')}
                 id="client-ruc"
                 name="ruc"
@@ -118,7 +133,9 @@ export const ClientUpdate = () => {
                 type="text"
                 validate={{
                   required: { value: true, message: translate('entity.validation.required') },
-                  maxLength: { value: 30, message: translate('entity.validation.maxlength', { max: 30 }) },
+                  minLength: { value: 10, message: translate('entity.validation.minlength', { min: 10 }) },
+                  maxLength: { value: 12, message: translate('entity.validation.maxlength', { max: 12 }) },
+                  pattern: { value: /^[0-9]+/, message: translate('entity.validation.pattern', { pattern: '^[0-9]+' }) },
                 }}
               />
               <ValidatedField
@@ -129,7 +146,7 @@ export const ClientUpdate = () => {
                 type="text"
                 validate={{
                   required: { value: true, message: translate('entity.validation.required') },
-                  maxLength: { value: 100, message: translate('entity.validation.maxlength', { max: 100 }) },
+                  maxLength: { value: 64, message: translate('entity.validation.maxlength', { max: 64 }) },
                 }}
               />
               <ValidatedField
@@ -139,7 +156,7 @@ export const ClientUpdate = () => {
                 data-cy="description"
                 type="text"
                 validate={{
-                  maxLength: { value: 255, message: translate('entity.validation.maxlength', { max: 255 }) },
+                  maxLength: { value: 512, message: translate('entity.validation.maxlength', { max: 512 }) },
                 }}
               />
               <ValidatedField

@@ -59,6 +59,7 @@ public class ClientAsserts {
         assertThat(expected)
             .as("Verify Client relevant properties")
             .satisfies(e -> assertThat(e.getUuid()).as("check uuid").isEqualTo(actual.getUuid()))
+            .satisfies(e -> assertThat(e.getEmail()).as("check email").isEqualTo(actual.getEmail()))
             .satisfies(e -> assertThat(e.getRuc()).as("check ruc").isEqualTo(actual.getRuc()))
             .satisfies(e -> assertThat(e.getBusinessName()).as("check businessName").isEqualTo(actual.getBusinessName()))
             .satisfies(e -> assertThat(e.getDescription()).as("check description").isEqualTo(actual.getDescription()))

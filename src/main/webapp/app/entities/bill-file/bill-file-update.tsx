@@ -118,7 +118,7 @@ export const BillFileUpdate = () => {
                 type="text"
                 validate={{
                   required: { value: true, message: translate('entity.validation.required') },
-                  maxLength: { value: 100, message: translate('entity.validation.maxlength', { max: 100 }) },
+                  maxLength: { value: 128, message: translate('entity.validation.maxlength', { max: 128 }) },
                 }}
               />
               <ValidatedField
@@ -140,6 +140,7 @@ export const BillFileUpdate = () => {
                 type="text"
                 validate={{
                   required: { value: true, message: translate('entity.validation.required') },
+                  pattern: { value: /^[\w]+\/[\w]+$/, message: translate('entity.validation.pattern', { pattern: '^[\\w]+\\/[\\w]+$' }) },
                 }}
               />
               <ValidatedBlobField

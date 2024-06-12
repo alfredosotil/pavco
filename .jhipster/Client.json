@@ -11,22 +11,31 @@
       "fieldValidateRules": ["unique"]
     },
     {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique", "required", "maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "256",
+      "fieldValidateRulesPattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
+    },
+    {
       "fieldName": "ruc",
       "fieldType": "String",
-      "fieldValidateRules": ["required", "unique", "maxlength"],
-      "fieldValidateRulesMaxlength": "30"
+      "fieldValidateRules": ["required", "unique", "minlength", "maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "12",
+      "fieldValidateRulesMinlength": "10",
+      "fieldValidateRulesPattern": "^[0-9]+"
     },
     {
       "fieldName": "businessName",
       "fieldType": "String",
       "fieldValidateRules": ["required", "maxlength"],
-      "fieldValidateRulesMaxlength": "100"
+      "fieldValidateRulesMaxlength": "64"
     },
     {
       "fieldName": "description",
       "fieldType": "String",
       "fieldValidateRules": ["maxlength"],
-      "fieldValidateRulesMaxlength": "255"
+      "fieldValidateRulesMaxlength": "512"
     },
     {
       "fieldName": "taxPayerType",
@@ -39,7 +48,7 @@
       "fieldType": "byte[]",
       "fieldTypeBlobContent": "image",
       "fieldValidateRules": ["maxbytes"],
-      "fieldValidateRulesMaxbytes": "2097152"
+      "fieldValidateRulesMaxbytes": "3145728"
     }
   ],
   "name": "Client",

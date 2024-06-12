@@ -121,7 +121,9 @@ export const BillDetailUpdate = () => {
                 type="text"
                 validate={{
                   required: { value: true, message: translate('entity.validation.required') },
-                  maxLength: { value: 30, message: translate('entity.validation.maxlength', { max: 30 }) },
+                  minLength: { value: 10, message: translate('entity.validation.minlength', { min: 10 }) },
+                  maxLength: { value: 12, message: translate('entity.validation.maxlength', { max: 12 }) },
+                  pattern: { value: /^[0-9]+/, message: translate('entity.validation.pattern', { pattern: '^[0-9]+' }) },
                 }}
               />
               <ValidatedField
@@ -132,7 +134,7 @@ export const BillDetailUpdate = () => {
                 type="text"
                 validate={{
                   required: { value: true, message: translate('entity.validation.required') },
-                  maxLength: { value: 255, message: translate('entity.validation.maxlength', { max: 255 }) },
+                  maxLength: { value: 512, message: translate('entity.validation.maxlength', { max: 512 }) },
                 }}
               />
               <ValidatedField

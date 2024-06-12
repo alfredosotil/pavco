@@ -90,6 +90,9 @@ export const Client = () => {
                 <th className="hand" onClick={sort('uuid')}>
                   <Translate contentKey="pavcoApp.client.uuid">Uuid</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('uuid')} />
                 </th>
+                <th className="hand" onClick={sort('email')}>
+                  <Translate contentKey="pavcoApp.client.email">Email</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('email')} />
+                </th>
                 <th className="hand" onClick={sort('ruc')}>
                   <Translate contentKey="pavcoApp.client.ruc">Ruc</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('ruc')} />
                 </th>
@@ -123,6 +126,7 @@ export const Client = () => {
                     </Button>
                   </td>
                   <td>{client.uuid}</td>
+                  <td>{client.email}</td>
                   <td>{client.ruc}</td>
                   <td>{client.businessName}</td>
                   <td>{client.description}</td>

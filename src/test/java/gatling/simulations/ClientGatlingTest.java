@@ -69,6 +69,7 @@ public class ClientGatlingTest extends Simulation {
                             StringBody(
                                 "{" +
                                 "\"uuid\": null" +
+                                ", \"email\": \"SAMPLE_TEXT\"" +
                                 ", \"ruc\": \"SAMPLE_TEXT\"" +
                                 ", \"businessName\": \"SAMPLE_TEXT\"" +
                                 ", \"description\": \"SAMPLE_TEXT\"" +

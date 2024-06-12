@@ -54,8 +54,8 @@ class BillFileResourceIT {
     private static final Long DEFAULT_SIZE = 1L;
     private static final Long UPDATED_SIZE = 2L;
 
-    private static final String DEFAULT_MIME_TYPE = "AAAAAAAAAA";
-    private static final String UPDATED_MIME_TYPE = "BBBBBBBBBB";
+    private static final String DEFAULT_MIME_TYPE = "ycxbDO/j";
+    private static final String UPDATED_MIME_TYPE = "80V5L/xHCG6";
 
     private static final byte[] DEFAULT_CONTENT = TestUtil.createByteArray(1, "0");
     private static final byte[] UPDATED_CONTENT = TestUtil.createByteArray(1, "1");
@@ -413,13 +413,7 @@ class BillFileResourceIT {
         BillFile partialUpdatedBillFile = new BillFile();
         partialUpdatedBillFile.setId(billFile.getId());
 
-        partialUpdatedBillFile
-            .name(UPDATED_NAME)
-            .size(UPDATED_SIZE)
-            .mimeType(UPDATED_MIME_TYPE)
-            .content(UPDATED_CONTENT)
-            .contentContentType(UPDATED_CONTENT_CONTENT_TYPE)
-            .isProcessed(UPDATED_IS_PROCESSED);
+        partialUpdatedBillFile.uuid(UPDATED_UUID).isProcessed(UPDATED_IS_PROCESSED);
 
         restBillFileMockMvc
             .perform(

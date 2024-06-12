@@ -17,13 +17,14 @@ public class BillFileDTO implements Serializable {
     private UUID uuid;
 
     @NotNull
-    @Size(max = 100)
+    @Size(max = 128)
     private String name;
 
     @NotNull
     private Long size;
 
     @NotNull
+    @Pattern(regexp = "^[\\w]+\\/[\\w]+$")
     private String mimeType;
 
     @Lob

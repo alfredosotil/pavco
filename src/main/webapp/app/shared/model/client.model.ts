@@ -4,6 +4,7 @@ import { TaxPayerType } from 'app/shared/model/enumerations/tax-payer-type.model
 export interface IClient {
   id?: number;
   uuid?: string | null;
+  email?: string;
   ruc?: string;
   businessName?: string;
   description?: string | null;

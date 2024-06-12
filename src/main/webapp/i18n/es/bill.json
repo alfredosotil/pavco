@@ -21,6 +21,7 @@
       "uuid": "Uuid",
       "code": "Code",
       "notes": "Notes",
+      "total": "Total",
       "billDetail": "Bill Detail",
       "client": "Client"
     }

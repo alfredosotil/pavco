@@ -93,6 +93,9 @@ export const Product = () => {
                 <th className="hand" onClick={sort('code')}>
                   <Translate contentKey="pavcoApp.product.code">Code</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('code')} />
                 </th>
+                <th className="hand" onClick={sort('name')}>
+                  <Translate contentKey="pavcoApp.product.name">Name</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('name')} />
+                </th>
                 <th className="hand" onClick={sort('price')}>
                   <Translate contentKey="pavcoApp.product.price">Price</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('price')} />
@@ -117,6 +120,7 @@ export const Product = () => {
                   </td>
                   <td>{product.uuid}</td>
                   <td>{product.code}</td>
+                  <td>{product.name}</td>
                   <td>{product.price}</td>
                   <td>{product.discount}</td>
                   <td>

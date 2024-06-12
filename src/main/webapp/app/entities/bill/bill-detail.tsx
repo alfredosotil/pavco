@@ -50,6 +50,12 @@ export const BillDetail = () => {
           </dt>
           <dd>{billEntity.notes}</dd>
           <dt>
+            <span id="total">
+              <Translate contentKey="pavcoApp.bill.total">Total</Translate>
+            </span>
+          </dt>
+          <dd>{billEntity.total}</dd>
+          <dt>
             <Translate contentKey="pavcoApp.bill.client">Client</Translate>
           </dt>
           <dd>{billEntity.client ? billEntity.client.ruc : ''}</dd>

@@ -13,14 +13,21 @@
     {
       "fieldName": "code",
       "fieldType": "String",
-      "fieldValidateRules": ["required", "unique", "maxlength"],
-      "fieldValidateRulesMaxlength": "30"
+      "fieldValidateRules": ["required", "unique", "minlength", "maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "12",
+      "fieldValidateRulesMinlength": "10",
+      "fieldValidateRulesPattern": "^[0-9]+"
     },
     {
       "fieldName": "notes",
       "fieldType": "String",
       "fieldValidateRules": ["maxlength"],
       "fieldValidateRulesMaxlength": "255"
+    },
+    {
+      "fieldName": "total",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
     }
   ],
   "name": "Bill",

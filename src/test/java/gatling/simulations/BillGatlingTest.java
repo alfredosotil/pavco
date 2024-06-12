@@ -65,7 +65,16 @@ public class BillGatlingTest extends Simulation {
                     http("Create new bill")
                         .post("/api/bills")
                         .headers(headers_http_authenticated)
-                        .body(StringBody("{" + "\"uuid\": null" + ", \"code\": \"SAMPLE_TEXT\"" + ", \"notes\": \"SAMPLE_TEXT\"" + "}"))
+                        .body(
+                            StringBody(
+                                "{" +
+                                "\"uuid\": null" +
+                                ", \"code\": \"SAMPLE_TEXT\"" +
+                                ", \"notes\": \"SAMPLE_TEXT\"" +
+                                ", \"total\": 0" +
+                                "}"
+                            )
+                        )
                         .asJson()
                         .check(status().is(201))
                         .check(headerRegex("Location", "(.*)").saveAs("new_bill_url"))

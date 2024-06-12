@@ -28,13 +28,18 @@ public class Bill implements Serializable {
     private UUID uuid;
 
     @NotNull
-    @Size(max = 30)
-    @Column(name = "code", length = 30, nullable = false, unique = true)
+    @Size(min = 10, max = 12)
+    @Pattern(regexp = "^[0-9]+")
+    @Column(name = "code", length = 12, nullable = false, unique = true)
     private String code;
 
     @Size(max = 255)
     @Column(name = "notes", length = 255)
     private String notes;
+
+    @NotNull
+    @Column(name = "total", nullable = false)
+    private Double total;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "bill")
     @JsonIgnoreProperties(value = { "bill" }, allowSetters = true)
@@ -96,6 +101,19 @@ public class Bill implements Serializable {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public Double getTotal() {
+        return this.total;
+    }
+
+    public Bill total(Double total) {
+        this.setTotal(total);
+        return this;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
     public Set<BillDetail> getBillDetails() {
@@ -169,6 +187,7 @@ public class Bill implements Serializable {
             ", uuid='" + getUuid() + "'" +
             ", code='" + getCode() + "'" +
             ", notes='" + getNotes() + "'" +
+            ", total=" + getTotal() +
             "}";
     }
 }

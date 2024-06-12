@@ -17,7 +17,7 @@
             <column name="uuid" type="${uuidType}">
                 <constraints nullable="true" unique="true" uniqueConstraintName="ux_bill_file__uuid" />
             </column>
-            <column name="name" type="varchar(100)">
+            <column name="name" type="varchar(128)">
                 <constraints nullable="false" />
             </column>
             <column name="size" type="bigint">

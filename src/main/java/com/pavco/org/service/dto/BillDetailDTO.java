@@ -16,11 +16,12 @@ public class BillDetailDTO implements Serializable {
     private UUID uuid;
 
     @NotNull
-    @Size(max = 30)
+    @Size(min = 10, max = 12)
+    @Pattern(regexp = "^[0-9]+")
     private String code;
 
     @NotNull
-    @Size(max = 255)
+    @Size(max = 512)
     private String description;
 
     @NotNull

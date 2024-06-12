@@ -13,14 +13,16 @@
     {
       "fieldName": "code",
       "fieldType": "String",
-      "fieldValidateRules": ["required", "unique", "maxlength"],
-      "fieldValidateRulesMaxlength": "30"
+      "fieldValidateRules": ["required", "unique", "minlength", "maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "12",
+      "fieldValidateRulesMinlength": "10",
+      "fieldValidateRulesPattern": "^[0-9]+"
     },
     {
       "fieldName": "description",
       "fieldType": "String",
       "fieldValidateRules": ["required", "maxlength"],
-      "fieldValidateRulesMaxlength": "255"
+      "fieldValidateRulesMaxlength": "512"
     },
     {
       "fieldName": "price",

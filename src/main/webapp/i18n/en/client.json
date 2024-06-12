@@ -19,6 +19,7 @@
       },
       "id": "ID",
       "uuid": "Uuid",
+      "email": "Email",
       "ruc": "Ruc",
       "businessName": "Business Name",
       "description": "Description",

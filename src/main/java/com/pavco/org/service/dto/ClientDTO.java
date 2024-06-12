@@ -18,14 +18,20 @@ public class ClientDTO implements Serializable {
     private UUID uuid;
 
     @NotNull
-    @Size(max = 30)
+    @Size(max = 256)
+    @Pattern(regexp = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")
+    private String email;
+
+    @NotNull
+    @Size(min = 10, max = 12)
+    @Pattern(regexp = "^[0-9]+")
     private String ruc;
 
     @NotNull
-    @Size(max = 100)
+    @Size(max = 64)
     private String businessName;
 
-    @Size(max = 255)
+    @Size(max = 512)
     private String description;
 
     @NotNull
@@ -52,6 +58,14 @@ public class ClientDTO implements Serializable {
 
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getRuc() {
@@ -137,6 +151,7 @@ public class ClientDTO implements Serializable {
         return "ClientDTO{" +
             "id=" + getId() +
             ", uuid='" + getUuid() + "'" +
+            ", email='" + getEmail() + "'" +
             ", ruc='" + getRuc() + "'" +
             ", businessName='" + getBusinessName() + "'" +
             ", description='" + getDescription() + "'" +

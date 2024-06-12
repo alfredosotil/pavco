@@ -14,7 +14,7 @@
       "fieldName": "name",
       "fieldType": "String",
       "fieldValidateRules": ["required", "maxlength"],
-      "fieldValidateRulesMaxlength": "100"
+      "fieldValidateRulesMaxlength": "128"
     },
     {
       "fieldName": "size",
@@ -24,13 +24,15 @@
     {
       "fieldName": "mimeType",
       "fieldType": "String",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": ["required", "pattern"],
+      "fieldValidateRulesPattern": "^[\\w]+\\/[\\w]+$"
     },
     {
       "fieldName": "content",
       "fieldType": "byte[]",
       "fieldTypeBlobContent": "any",
-      "fieldValidateRules": ["required"]
+      "fieldValidateRules": ["required", "maxbytes"],
+      "fieldValidateRulesMaxbytes": "3145728"
     },
     {
       "fieldName": "isProcessed",
