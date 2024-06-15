@@ -29,6 +29,8 @@ jobs:
       - name: Install Node.js packages
         run: npm install
       - name: Run backend test
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         run: |
           chmod +x mvnw
           npm run ci:backend:test
