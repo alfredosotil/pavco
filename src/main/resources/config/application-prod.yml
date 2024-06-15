@@ -118,3 +118,8 @@ jhipster:
 # ===================================================================
 
 # application:
+sentry:
+  dsn: https://af98bc232ab1af45c1bf483a48ac238d@o472574.ingest.us.sentry.io/4507421397417984
+  # Set traces-sample-rate to 1.0 to capture 100% of transactions for performance monitoring.
+  # We recommend adjusting this value in production.
+  traces-sample-rate: 1.0
