@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button, Table } from 'reactstrap';
-import { Translate, getSortState } from 'react-jhipster';
+import { Translate, TextFormat, getSortState } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
+import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ASC, DESC, SORT } from 'app/shared/util/pagination.constants';
 import { overrideSortStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
@@ -107,6 +108,22 @@ export const BillDetail = () => {
                   <Translate contentKey="pavcoApp.billDetail.quantity">Quantity</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('quantity')} />
                 </th>
+                <th className="hand" onClick={sort('createdBy')}>
+                  <Translate contentKey="pavcoApp.billDetail.createdBy">Created By</Translate>{' '}
+                  <FontAwesomeIcon icon={getSortIconByFieldName('createdBy')} />
+                </th>
+                <th className="hand" onClick={sort('createdDate')}>
+                  <Translate contentKey="pavcoApp.billDetail.createdDate">Created Date</Translate>{' '}
+                  <FontAwesomeIcon icon={getSortIconByFieldName('createdDate')} />
+                </th>
+                <th className="hand" onClick={sort('lastModifiedBy')}>
+                  <Translate contentKey="pavcoApp.billDetail.lastModifiedBy">Last Modified By</Translate>{' '}
+                  <FontAwesomeIcon icon={getSortIconByFieldName('lastModifiedBy')} />
+                </th>
+                <th className="hand" onClick={sort('lastModifiedDate')}>
+                  <Translate contentKey="pavcoApp.billDetail.lastModifiedDate">Last Modified Date</Translate>{' '}
+                  <FontAwesomeIcon icon={getSortIconByFieldName('lastModifiedDate')} />
+                </th>
                 <th>
                   <Translate contentKey="pavcoApp.billDetail.bill">Bill</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
@@ -126,6 +143,16 @@ export const BillDetail = () => {
                   <td>{billDetail.description}</td>
                   <td>{billDetail.price}</td>
                   <td>{billDetail.quantity}</td>
+                  <td>{billDetail.createdBy}</td>
+                  <td>
+                    {billDetail.createdDate ? <TextFormat type="date" value={billDetail.createdDate} format={APP_DATE_FORMAT} /> : null}
+                  </td>
+                  <td>{billDetail.lastModifiedBy}</td>
+                  <td>
+                    {billDetail.lastModifiedDate ? (
+                      <TextFormat type="date" value={billDetail.lastModifiedDate} format={APP_DATE_FORMAT} />
+                    ) : null}
+                  </td>
                   <td>{billDetail.bill ? <Link to={`/bill/${billDetail.bill.id}`}>{billDetail.bill.code}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">

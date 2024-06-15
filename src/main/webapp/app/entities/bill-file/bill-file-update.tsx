@@ -55,6 +55,8 @@ export const BillFileUpdate = () => {
     if (values.size !== undefined && typeof values.size !== 'number') {
       values.size = Number(values.size);
     }
+    values.createdDate = convertDateTimeToServer(values.createdDate);
+    values.lastModifiedDate = convertDateTimeToServer(values.lastModifiedDate);
 
     const entity = {
       ...billFileEntity,
@@ -71,9 +73,14 @@ export const BillFileUpdate = () => {
 
   const defaultValues = () =>
     isNew
-      ? {}
+      ? {
+          createdDate: displayDefaultDateTime(),
+          lastModifiedDate: displayDefaultDateTime(),
+        }
       : {
           ...billFileEntity,
+          createdDate: convertDateTimeFromServer(billFileEntity.createdDate),
+          lastModifiedDate: convertDateTimeFromServer(billFileEntity.lastModifiedDate),
           client: billFileEntity?.client?.id,
         };
 
@@ -160,6 +167,36 @@ export const BillFileUpdate = () => {
                 data-cy="isProcessed"
                 check
                 type="checkbox"
+              />
+              <ValidatedField
+                label={translate('pavcoApp.billFile.createdBy')}
+                id="bill-file-createdBy"
+                name="createdBy"
+                data-cy="createdBy"
+                type="text"
+              />
+              <ValidatedField
+                label={translate('pavcoApp.billFile.createdDate')}
+                id="bill-file-createdDate"
+                name="createdDate"
+                data-cy="createdDate"
+                type="datetime-local"
+                placeholder="YYYY-MM-DD HH:mm"
+              />
+              <ValidatedField
+                label={translate('pavcoApp.billFile.lastModifiedBy')}
+                id="bill-file-lastModifiedBy"
+                name="lastModifiedBy"
+                data-cy="lastModifiedBy"
+                type="text"
+              />
+              <ValidatedField
+                label={translate('pavcoApp.billFile.lastModifiedDate')}
+                id="bill-file-lastModifiedDate"
+                name="lastModifiedDate"
+                data-cy="lastModifiedDate"
+                type="datetime-local"
+                placeholder="YYYY-MM-DD HH:mm"
               />
               <ValidatedField
                 id="bill-file-client"

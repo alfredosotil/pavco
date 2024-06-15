@@ -24,6 +24,10 @@
       "mimeType": "Mime Type",
       "content": "Content",
       "isProcessed": "Is Processed",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
       "client": "Client"
     }
   }

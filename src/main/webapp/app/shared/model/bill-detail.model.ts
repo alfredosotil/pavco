@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { IBill } from 'app/shared/model/bill.model';
 
 export interface IBillDetail {
@@ -7,6 +8,10 @@ export interface IBillDetail {
   description?: string;
   price?: number;
   quantity?: number;
+  createdBy?: string;
+  createdDate?: dayjs.Dayjs;
+  lastModifiedBy?: string;
+  lastModifiedDate?: dayjs.Dayjs;
   bill?: IBill | null;
 }
 

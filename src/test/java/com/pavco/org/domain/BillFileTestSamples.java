@@ -15,7 +15,9 @@ public class BillFileTestSamples {
             .uuid(UUID.fromString("23d8dc04-a48b-45d9-a01d-4b728f0ad4aa"))
             .name("name1")
             .size(1L)
-            .mimeType("mimeType1");
+            .mimeType("mimeType1")
+            .createdBy("createdBy1")
+            .lastModifiedBy("lastModifiedBy1");
     }
 
     public static BillFile getBillFileSample2() {
@@ -24,7 +26,9 @@ public class BillFileTestSamples {
             .uuid(UUID.fromString("ad79f240-3727-46c3-b89f-2cf6ebd74367"))
             .name("name2")
             .size(2L)
-            .mimeType("mimeType2");
+            .mimeType("mimeType2")
+            .createdBy("createdBy2")
+            .lastModifiedBy("lastModifiedBy2");
     }
 
     public static BillFile getBillFileRandomSampleGenerator() {
@@ -33,6 +37,8 @@ public class BillFileTestSamples {
             .uuid(UUID.randomUUID())
             .name(UUID.randomUUID().toString())
             .size(longCount.incrementAndGet())
-            .mimeType(UUID.randomUUID().toString());
+            .mimeType(UUID.randomUUID().toString())
+            .createdBy(UUID.randomUUID().toString())
+            .lastModifiedBy(UUID.randomUUID().toString());
     }
 }

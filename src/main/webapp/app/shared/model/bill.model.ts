@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { IClient } from 'app/shared/model/client.model';
 
 export interface IBill {
@@ -6,6 +7,10 @@ export interface IBill {
   code?: string;
   notes?: string | null;
   total?: number;
+  createdBy?: string;
+  createdDate?: dayjs.Dayjs;
+  lastModifiedBy?: string;
+  lastModifiedDate?: dayjs.Dayjs;
   client?: IClient | null;
 }
 

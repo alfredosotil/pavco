@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Button, Row, Col } from 'reactstrap';
-import { Translate } from 'react-jhipster';
+import { Translate, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { getEntity } from './bill-detail.reducer';
@@ -61,6 +62,36 @@ export const BillDetailDetail = () => {
             </span>
           </dt>
           <dd>{billDetailEntity.quantity}</dd>
+          <dt>
+            <span id="createdBy">
+              <Translate contentKey="pavcoApp.billDetail.createdBy">Created By</Translate>
+            </span>
+          </dt>
+          <dd>{billDetailEntity.createdBy}</dd>
+          <dt>
+            <span id="createdDate">
+              <Translate contentKey="pavcoApp.billDetail.createdDate">Created Date</Translate>
+            </span>
+          </dt>
+          <dd>
+            {billDetailEntity.createdDate ? <TextFormat value={billDetailEntity.createdDate} type="date" format={APP_DATE_FORMAT} /> : null}
+          </dd>
+          <dt>
+            <span id="lastModifiedBy">
+              <Translate contentKey="pavcoApp.billDetail.lastModifiedBy">Last Modified By</Translate>
+            </span>
+          </dt>
+          <dd>{billDetailEntity.lastModifiedBy}</dd>
+          <dt>
+            <span id="lastModifiedDate">
+              <Translate contentKey="pavcoApp.billDetail.lastModifiedDate">Last Modified Date</Translate>
+            </span>
+          </dt>
+          <dd>
+            {billDetailEntity.lastModifiedDate ? (
+              <TextFormat value={billDetailEntity.lastModifiedDate} type="date" format={APP_DATE_FORMAT} />
+            ) : null}
+          </dd>
           <dt>
             <Translate contentKey="pavcoApp.billDetail.bill">Bill</Translate>
           </dt>

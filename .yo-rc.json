@@ -3,6 +3,12 @@
     "applicationType": "monolith",
     "authenticationType": "jwt",
     "baseName": "pavco",
+    "blueprints": [
+      {
+        "name": "generator-jhipster-entity-audit",
+        "version": "5.4.0"
+      }
+    ],
     "buildTool": "maven",
     "cacheProvider": "no",
     "clientFramework": "react",
@@ -22,7 +28,7 @@
     "jhipsterVersion": "8.5.0",
     "jwtSecretKey": "MjUxNzQ5MTJiYmQ1YjdhNGVmMmVkOTA3MDEzNGQ1ODU5OTg2ZWFiOTdhOWEyYWZkMzdmYzA1YzI1MjczMDVkNTIyNGFjZDI2YTQzYTBhNzFhOWFiYWY3OGJlN2Q3NmZlZTMwZTY0NWMwMDMwZTgxOWJmZjk1NGJmZTRlZjRjM2Y=",
     "languages": ["es", "en"],
-    "lastLiquibaseTimestamp": 1716950893000,
+    "lastLiquibaseTimestamp": 1718426771000,
     "messageBroker": false,
     "microfrontends": [],
     "nativeLanguage": "es",
@@ -35,5 +41,10 @@
     "testFrameworks": ["gatling", "cucumber"],
     "websocket": false,
     "withAdminUi": true
+  },
+  "generator-jhipster-entity-audit": {
+    "auditFramework": "custom",
+    "auditPage": true,
+    "entityAuditEventChangelogDate": "20240615044611"
   }
 }

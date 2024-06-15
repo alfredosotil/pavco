@@ -10,11 +10,23 @@ public class BillTestSamples {
     private static final AtomicLong longCount = new AtomicLong(random.nextInt() + (2 * Integer.MAX_VALUE));
 
     public static Bill getBillSample1() {
-        return new Bill().id(1L).uuid(UUID.fromString("23d8dc04-a48b-45d9-a01d-4b728f0ad4aa")).code("code1").notes("notes1");
+        return new Bill()
+            .id(1L)
+            .uuid(UUID.fromString("23d8dc04-a48b-45d9-a01d-4b728f0ad4aa"))
+            .code("code1")
+            .notes("notes1")
+            .createdBy("createdBy1")
+            .lastModifiedBy("lastModifiedBy1");
     }
 
     public static Bill getBillSample2() {
-        return new Bill().id(2L).uuid(UUID.fromString("ad79f240-3727-46c3-b89f-2cf6ebd74367")).code("code2").notes("notes2");
+        return new Bill()
+            .id(2L)
+            .uuid(UUID.fromString("ad79f240-3727-46c3-b89f-2cf6ebd74367"))
+            .code("code2")
+            .notes("notes2")
+            .createdBy("createdBy2")
+            .lastModifiedBy("lastModifiedBy2");
     }
 
     public static Bill getBillRandomSampleGenerator() {
@@ -22,6 +34,8 @@ public class BillTestSamples {
             .id(longCount.incrementAndGet())
             .uuid(UUID.randomUUID())
             .code(UUID.randomUUID().toString())
-            .notes(UUID.randomUUID().toString());
+            .notes(UUID.randomUUID().toString())
+            .createdBy(UUID.randomUUID().toString())
+            .lastModifiedBy(UUID.randomUUID().toString());
     }
 }

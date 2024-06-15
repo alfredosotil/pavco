@@ -46,6 +46,7 @@ public class BillDetailServiceImpl implements BillDetailService {
     public BillDetailDTO update(BillDetailDTO billDetailDTO) {
         log.debug("Request to update BillDetail : {}", billDetailDTO);
         BillDetail billDetail = billDetailMapper.toEntity(billDetailDTO);
+        billDetail.setIsPersisted();
         billDetail = billDetailRepository.save(billDetail);
         return billDetailMapper.toDto(billDetail);
     }

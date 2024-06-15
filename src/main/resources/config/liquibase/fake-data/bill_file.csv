@@ -1,11 +1,11 @@
-id;uuid;name;size;mime_type;content;content_content_type;is_processed
-1;174e0694-f8b1-40e7-9340-a6e51ecae6e0;yuck loosely victoriously;251;"K/6";../fake-data/blob/hipster.png;image/png;true
-2;a8dccce7-8211-4d27-a8f3-92ea9efb59ef;um however ah;29308;"1cCA12/SJ";../fake-data/blob/hipster.png;image/png;true
-3;8e06f8af-c3be-42c3-8e43-32399b170a20;because;13400;"4/b";../fake-data/blob/hipster.png;image/png;false
-4;8f2e6a1b-0b96-41d2-acef-d6b7ccb38e81;until;31821;"m/_LL";../fake-data/blob/hipster.png;image/png;true
-5;c90c036d-6bc9-4648-a84e-5aa6bdac596e;from;14283;"jSo29s/d";../fake-data/blob/hipster.png;image/png;true
-6;dcf7ed66-e9d8-46fe-96a4-43867b20d470;an;7136;"m/QflO6";../fake-data/blob/hipster.png;image/png;true
-7;20126b30-7031-41cc-bf3d-e18b2e7957e8;unless muddle;9554;"4nIe/J";../fake-data/blob/hipster.png;image/png;false
-8;e985c6cf-afe8-4c80-ba20-dd39f8514b6b;kindheartedly monkey opt;18272;"2qYy/OlN";../fake-data/blob/hipster.png;image/png;true
-9;fb55b669-a7a6-42b0-b898-1fd26065a1be;tactics;4210;"E/aebq";../fake-data/blob/hipster.png;image/png;false
-10;b37f5d4b-7d39-46f1-ab03-7a1cb7e82646;unless courageously;25993;"y/7tcBO";../fake-data/blob/hipster.png;image/png;false
+id;uuid;name;size;mime_type;content;content_content_type;is_processed;created_by;created_date;last_modified_by;last_modified_date
+1;174e0694-f8b1-40e7-9340-a6e51ecae6e0;yuck loosely victoriously;251;"K/6";../fake-data/blob/hipster.png;image/png;true;legal miserably;2024-05-28T13:25:42;trout obvious until;2024-05-28T02:52:54
+2;2c244b49-3018-4f4e-bdd0-77de4b918e06;clinking huzzah;6249;"MTgB/M";../fake-data/blob/hipster.png;image/png;true;supposing;2024-05-28T15:37:16;looks;2024-05-28T03:50:06
+3;2e6a1b0b-961d-42ce-bfd6-b7ccb38e8193;yowza phew unbearably;13613;"UMxsF/r5uO";../fake-data/blob/hipster.png;image/png;false;husky regarding;2024-05-28T05:43:54;upside-down whenever up;2024-05-28T13:03:35
+4;d86fe6a4-4386-47b2-80d4-7072e5df8223;phooey;4254;"f/w";../fake-data/blob/hipster.png;image/png;false;successfully;2024-05-28T08:22:17;boohoo mysterious dimly;2024-05-28T06:32:11
+5;bbab37e8-48e3-4911-a99e-985c6cfafe8c;punctually;31028;"ufrQ/R1V";../fake-data/blob/hipster.png;image/png;true;after provided ordinary;2024-05-28T05:43:50;drat;2024-05-28T04:08:50
+6;b55b669a-7a62-4b08-9981-fd26065a1bed;among;500;"Lae/q";../fake-data/blob/hipster.png;image/png;false;duh brown uh-huh;2024-05-28T08:52:33;onto generally;2024-05-28T10:02:11
+7;fed1b72c-16cf-4507-8af7-5fe2702209d4;pinpoint;9853;"TyU0PB/Up";../fake-data/blob/hipster.png;image/png;false;high-level;2024-05-28T07:16:53;rowdy;2024-05-28T04:06:52
+8;df206f73-7a08-40a2-8ad4-77f27e214519;gosh blind;14757;"2RYxHo/qDpkKe";../fake-data/blob/hipster.png;image/png;true;tweezers needily reluctantly;2024-05-28T08:53:35;badger;2024-05-28T15:22:31
+9;a924f4f5-b5e0-4574-b65d-b75ea1a5bd57;jail lest;7348;"pp/er";../fake-data/blob/hipster.png;image/png;true;misunderstand meanwhile demerge;2024-05-28T11:56:55;inlay;2024-05-28T06:40:59
+10;043d2b98-6643-491e-a94c-3b469af5ab33;ravioli a bunch;2558;"AOdH/5lZYO";../fake-data/blob/hipster.png;image/png;true;vegetate archives;2024-05-28T04:39:37;over;2024-05-28T03:07:56

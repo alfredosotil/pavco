@@ -4,17 +4,20 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+import org.springframework.data.domain.Persistable;
 
 /**
  * A Bill.
  */
 @Entity
 @Table(name = "bill")
+@JsonIgnoreProperties(value = { "new" })
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class Bill implements Serializable {
+public class Bill extends AbstractAuditingEntity<Long> implements Serializable, Persistable<Long> {
 
     private static final long serialVersionUID = 1L;
 
@@ -40,6 +43,13 @@ public class Bill implements Serializable {
     @NotNull
     @Column(name = "total", nullable = false)
     private Double total;
+
+    // Inherited createdBy definition
+    // Inherited createdDate definition
+    // Inherited lastModifiedBy definition
+    // Inherited lastModifiedDate definition
+    @Transient
+    private boolean isPersisted;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "bill")
     @JsonIgnoreProperties(value = { "bill" }, allowSetters = true)
@@ -116,6 +126,47 @@ public class Bill implements Serializable {
         this.total = total;
     }
 
+    // Inherited createdBy methods
+    public Bill createdBy(String createdBy) {
+        this.setCreatedBy(createdBy);
+        return this;
+    }
+
+    // Inherited createdDate methods
+    public Bill createdDate(Instant createdDate) {
+        this.setCreatedDate(createdDate);
+        return this;
+    }
+
+    // Inherited lastModifiedBy methods
+    public Bill lastModifiedBy(String lastModifiedBy) {
+        this.setLastModifiedBy(lastModifiedBy);
+        return this;
+    }
+
+    // Inherited lastModifiedDate methods
+    public Bill lastModifiedDate(Instant lastModifiedDate) {
+        this.setLastModifiedDate(lastModifiedDate);
+        return this;
+    }
+
+    @PostLoad
+    @PostPersist
+    public void updateEntityState() {
+        this.setIsPersisted();
+    }
+
+    @Transient
+    @Override
+    public boolean isNew() {
+        return !this.isPersisted;
+    }
+
+    public Bill setIsPersisted() {
+        this.isPersisted = true;
+        return this;
+    }
+
     public Set<BillDetail> getBillDetails() {
         return this.billDetails;
     }
@@ -188,6 +239,10 @@ public class Bill implements Serializable {
             ", code='" + getCode() + "'" +
             ", notes='" + getNotes() + "'" +
             ", total=" + getTotal() +
+            ", createdBy='" + getCreatedBy() + "'" +
+            ", createdDate='" + getCreatedDate() + "'" +
+            ", lastModifiedBy='" + getLastModifiedBy() + "'" +
+            ", lastModifiedDate='" + getLastModifiedDate() + "'" +
             "}";
     }
 }

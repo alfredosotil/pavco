@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Button, Row, Col } from 'reactstrap';
-import { Translate } from 'react-jhipster';
+import { Translate, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { getEntity } from './bill.reducer';
@@ -55,6 +56,32 @@ export const BillDetail = () => {
             </span>
           </dt>
           <dd>{billEntity.total}</dd>
+          <dt>
+            <span id="createdBy">
+              <Translate contentKey="pavcoApp.bill.createdBy">Created By</Translate>
+            </span>
+          </dt>
+          <dd>{billEntity.createdBy}</dd>
+          <dt>
+            <span id="createdDate">
+              <Translate contentKey="pavcoApp.bill.createdDate">Created Date</Translate>
+            </span>
+          </dt>
+          <dd>{billEntity.createdDate ? <TextFormat value={billEntity.createdDate} type="date" format={APP_DATE_FORMAT} /> : null}</dd>
+          <dt>
+            <span id="lastModifiedBy">
+              <Translate contentKey="pavcoApp.bill.lastModifiedBy">Last Modified By</Translate>
+            </span>
+          </dt>
+          <dd>{billEntity.lastModifiedBy}</dd>
+          <dt>
+            <span id="lastModifiedDate">
+              <Translate contentKey="pavcoApp.bill.lastModifiedDate">Last Modified Date</Translate>
+            </span>
+          </dt>
+          <dd>
+            {billEntity.lastModifiedDate ? <TextFormat value={billEntity.lastModifiedDate} type="date" format={APP_DATE_FORMAT} /> : null}
+          </dd>
           <dt>
             <Translate contentKey="pavcoApp.bill.client">Client</Translate>
           </dt>

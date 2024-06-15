@@ -55,6 +55,8 @@ export const BillUpdate = () => {
     if (values.total !== undefined && typeof values.total !== 'number') {
       values.total = Number(values.total);
     }
+    values.createdDate = convertDateTimeToServer(values.createdDate);
+    values.lastModifiedDate = convertDateTimeToServer(values.lastModifiedDate);
 
     const entity = {
       ...billEntity,
@@ -71,9 +73,14 @@ export const BillUpdate = () => {
 
   const defaultValues = () =>
     isNew
-      ? {}
+      ? {
+          createdDate: displayDefaultDateTime(),
+          lastModifiedDate: displayDefaultDateTime(),
+        }
       : {
           ...billEntity,
+          createdDate: convertDateTimeFromServer(billEntity.createdDate),
+          lastModifiedDate: convertDateTimeFromServer(billEntity.lastModifiedDate),
           client: billEntity?.client?.id,
         };
 
@@ -136,6 +143,36 @@ export const BillUpdate = () => {
                   required: { value: true, message: translate('entity.validation.required') },
                   validate: v => isNumber(v) || translate('entity.validation.number'),
                 }}
+              />
+              <ValidatedField
+                label={translate('pavcoApp.bill.createdBy')}
+                id="bill-createdBy"
+                name="createdBy"
+                data-cy="createdBy"
+                type="text"
+              />
+              <ValidatedField
+                label={translate('pavcoApp.bill.createdDate')}
+                id="bill-createdDate"
+                name="createdDate"
+                data-cy="createdDate"
+                type="datetime-local"
+                placeholder="YYYY-MM-DD HH:mm"
+              />
+              <ValidatedField
+                label={translate('pavcoApp.bill.lastModifiedBy')}
+                id="bill-lastModifiedBy"
+                name="lastModifiedBy"
+                data-cy="lastModifiedBy"
+                type="text"
+              />
+              <ValidatedField
+                label={translate('pavcoApp.bill.lastModifiedDate')}
+                id="bill-lastModifiedDate"
+                name="lastModifiedDate"
+                data-cy="lastModifiedDate"
+                type="datetime-local"
+                placeholder="YYYY-MM-DD HH:mm"
               />
               <ValidatedField id="bill-client" name="client" data-cy="client" label={translate('pavcoApp.bill.client')} type="select">
                 <option value="" key="0" />

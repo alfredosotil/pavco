@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Button, Row, Col } from 'reactstrap';
-import { Translate, openFile, byteSize } from 'react-jhipster';
+import { Translate, openFile, byteSize, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { getEntity } from './bill-file.reducer';
@@ -80,6 +81,36 @@ export const BillFileDetail = () => {
             </span>
           </dt>
           <dd>{billFileEntity.isProcessed ? 'true' : 'false'}</dd>
+          <dt>
+            <span id="createdBy">
+              <Translate contentKey="pavcoApp.billFile.createdBy">Created By</Translate>
+            </span>
+          </dt>
+          <dd>{billFileEntity.createdBy}</dd>
+          <dt>
+            <span id="createdDate">
+              <Translate contentKey="pavcoApp.billFile.createdDate">Created Date</Translate>
+            </span>
+          </dt>
+          <dd>
+            {billFileEntity.createdDate ? <TextFormat value={billFileEntity.createdDate} type="date" format={APP_DATE_FORMAT} /> : null}
+          </dd>
+          <dt>
+            <span id="lastModifiedBy">
+              <Translate contentKey="pavcoApp.billFile.lastModifiedBy">Last Modified By</Translate>
+            </span>
+          </dt>
+          <dd>{billFileEntity.lastModifiedBy}</dd>
+          <dt>
+            <span id="lastModifiedDate">
+              <Translate contentKey="pavcoApp.billFile.lastModifiedDate">Last Modified Date</Translate>
+            </span>
+          </dt>
+          <dd>
+            {billFileEntity.lastModifiedDate ? (
+              <TextFormat value={billFileEntity.lastModifiedDate} type="date" format={APP_DATE_FORMAT} />
+            ) : null}
+          </dd>
           <dt>
             <Translate contentKey="pavcoApp.billFile.client">Client</Translate>
           </dt>

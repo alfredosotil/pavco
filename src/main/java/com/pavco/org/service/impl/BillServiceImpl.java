@@ -46,6 +46,7 @@ public class BillServiceImpl implements BillService {
     public BillDTO update(BillDTO billDTO) {
         log.debug("Request to update Bill : {}", billDTO);
         Bill bill = billMapper.toEntity(billDTO);
+        bill.setIsPersisted();
         bill = billRepository.save(bill);
         return billMapper.toDto(bill);
     }

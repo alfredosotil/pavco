@@ -74,6 +74,10 @@ public class BillFileGatlingTest extends Simulation {
                                 ", \"mimeType\": \"SAMPLE_TEXT\"" +
                                 ", \"content\": null" +
                                 ", \"isProcessed\": null" +
+                                ", \"createdBy\": \"SAMPLE_TEXT\"" +
+                                ", \"createdDate\": \"2020-01-01T00:00:00.000Z\"" +
+                                ", \"lastModifiedBy\": \"SAMPLE_TEXT\"" +
+                                ", \"lastModifiedDate\": \"2020-01-01T00:00:00.000Z\"" +
                                 "}"
                             )
                         )

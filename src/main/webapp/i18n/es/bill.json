@@ -22,6 +22,10 @@
       "code": "Code",
       "notes": "Notes",
       "total": "Total",
+      "createdBy": "Created By",
+      "createdDate": "Created Date",
+      "lastModifiedBy": "Last Modified By",
+      "lastModifiedDate": "Last Modified Date",
       "billDetail": "Bill Detail",
       "client": "Client"
     }
