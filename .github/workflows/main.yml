@@ -47,6 +47,7 @@ jobs:
       SPRING_OUTPUT_ANSI_ENABLED: DETECT
       SPRING_JPA_SHOW_SQL: false
       JHI_DISABLE_WEBPACK_LOGS: true
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -60,8 +61,6 @@ jobs:
         run: npm install
       - name: Package application
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        env:
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         run: npm run java:jar:prod
       - name: Deploy to Heroku
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
